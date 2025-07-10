@@ -1,0 +1,18 @@
+# === OS files ===
+.DS_Store
+Thumbs.db
+Icon?
+
+# === IDE/workspace ===
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+
+# === Logs ===
+*.log
+
+# === Temp/editor drifts ===
+*.tmp
+

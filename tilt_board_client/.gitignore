@@ -1,0 +1,42 @@
+# = Unity Generated Folders =
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Cc]rashReports/
+[Uu]serSettings/
+
+# Keep meta for assets you track
+!/[Aa]ssets/**/*.meta
+
+# Mono auto generated files
+mono_crash.*
+
+# = IDE stuff =
+.vs/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.pidb
+*.booproj
+*.svd
+.idea/
+.vscode/
+
+# = OS =
+.DS_Store
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# = Node (if any) =
+node_modules/
+
+# = Addressables =
+/[Aa]ssets/AddressableAssetsData/*/*.bin*
+/[Aa]ssets/AddressableAssetsData/*.bin*
