@@ -1,11 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Source.TiltBoard.Pool;
+using Source.TiltBoard.Bootstrap;
+using Source.TiltBoard.Global.Signal;
 using Source.TiltBoard.Signal;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Source.TiltBoard.Global
 {
@@ -16,19 +12,26 @@ namespace Source.TiltBoard.Global
         /// </summary>
         public static GameManager Instance { get; private set; }
 
-        // controllers that require to manage the game
-        private List<IController> _gameControllers = new List<IController>()
+        private Bootstrapper _bootstrapper = null;
+
+        public EGameState GameState
         {
-            new SignalController(), 
-            new PoolController()
-        };
+            get => _gamestate;
+            set
+            {
+                // fire the game state change signal 
+                GetController<SignalController>()?.Fire(
+                    new GameStateChangedSignal(
+                        _gamestate,
+                        value
+                    )
+                );
 
-
-        // TODO: MOVE THIS TO SOMEWHERE ELSE.
-        private TMP_Text _loadingMessageViewText = null;
-
-        // stores data in the map for easier access
-        private Dictionary<Type, IController> _gameControllerMap = new Dictionary<Type, IController>();
+                // now save the new state
+                _gamestate = value;
+            }
+        }
+        private EGameState _gamestate = EGameState.None;
 
         private void Awake()
         {
@@ -43,59 +46,29 @@ namespace Source.TiltBoard.Global
                 DestroyImmediate(gameObject);
             }
 
-            // find and cache the loading message text
-            _loadingMessageViewText = GameObject.Find("LoadingMessageView").GetComponent<TMP_Text>();
+            // set the game state to initial load 
+            // keep in mind, we set the private variable here, else the property would throw error.
+            _gamestate = EGameState.InitialLoad;
         }
 
-        private IEnumerator Start()
+        private void Start()
         {
-            // ordered init the controllers
-            yield return StartCoroutine(orderedInitControllers());
+            // create a new gameObject and add the bootstraper component on to it
+            GameObject bootstrapObject = new GameObject("Bootstrapper");
 
-            // once all the controllers are orderly initialized, now load the menu scene 
-            SceneManager.LoadScene("main");
+            // add the bootstrapper component on to it
+            _bootstrapper = bootstrapObject.AddComponent<Bootstrapper>();
+
+            // finally add it to don't destroy
+            DontDestroyOnLoad(bootstrapObject);
         }
 
-        private void Update()
-        {
-            foreach (IController controller in _gameControllers)
-            {
-                controller.Update( Time.deltaTime );
-            }
-        }
-
-        void OnDisable()
-        {
-            foreach (IController controller in _gameControllers)
-            {
-                controller.Deinitialize();
-            }
-        }
-
-        private IEnumerator orderedInitControllers()
-        {
-            foreach (IController controller in _gameControllers)
-            {
-                // flag to wait till we proceed
-                bool isInitialized = false;
-
-                // set the loading message
-                _loadingMessageViewText.text = controller.LoadingMessage; 
-
-                // initialize the controller
-                controller.Initialize(success => isInitialized = success);
-
-                // save in the map
-                _gameControllerMap.Add(controller.GetType(), controller);
-
-                // now wait till the last controller has been initilaized
-                yield return new WaitUntil(() => isInitialized);
-            }
-        }
-
+        /// <summary>
+        /// Wraps the bootstrap methods to fetch the controller
+        /// </summary>
         public T GetController<T>() where T : class
         {
-            return _gameControllerMap[typeof(T)] as T;
+            return _bootstrapper.GetController<T>();
         }
     }
 }

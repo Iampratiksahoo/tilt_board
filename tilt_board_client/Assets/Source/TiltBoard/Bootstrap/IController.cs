@@ -1,6 +1,6 @@
 using System;
 
-namespace Source.TiltBoard.Global
+namespace Source.TiltBoard.Bootstrap
 {
     public interface IController
     {

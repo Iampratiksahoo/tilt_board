@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Source.TiltBoard.Global;
+using Source.TiltBoard.Bootstrap;
 
 namespace Source.TiltBoard.Signal
 {
@@ -8,7 +8,7 @@ namespace Source.TiltBoard.Signal
     {
         private Dictionary<Type, List<Delegate>> _typeToDelegatesMap = null;
 
-        public string LoadingMessage => "Setting things up...";
+        public string LoadingMessage => "Loading Signal Controller...";
 
         public void Initialize(Action<bool> success)
         {

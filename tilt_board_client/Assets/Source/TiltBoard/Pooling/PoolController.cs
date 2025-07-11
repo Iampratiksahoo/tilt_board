@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Source.TiltBoard.Global;
+using Source.TiltBoard.Bootstrap;
 using Source.TiltBoard.Pool.Util;
 using Source.TiltBoard.Util;
 using UnityEngine;
