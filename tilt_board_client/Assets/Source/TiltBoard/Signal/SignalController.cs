@@ -8,6 +8,8 @@ namespace Source.TiltBoard.Signal
     {
         private Dictionary<Type, List<Delegate>> _typeToDelegatesMap = null;
 
+        public string LoadingMessage => "Setting things up...";
+
         public void Initialize(Action<bool> success)
         {
             // if the type map is null, then create a new map
