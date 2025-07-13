@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Source.TiltBoard.UI
 {
-    public class BootstrapView : MonoBehaviour
+    public class BootstrapViewManager : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text loadingMessageText = null;

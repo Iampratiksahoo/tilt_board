@@ -1,4 +1,3 @@
-using System;
 using Source.TiltBoard.Global;
 using Source.TiltBoard.Global.Signal;
 using Source.TiltBoard.Signal;
@@ -6,9 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Source.TiltBoard.UI
+namespace Source.TiltBoard.UI.MainMenu
 {
-    public class MainMenuView : MonoBehaviour
+    public class MainMenuViewManager : MonoBehaviour
     {
         [SerializeField]
         private Button startGameButton = null;
