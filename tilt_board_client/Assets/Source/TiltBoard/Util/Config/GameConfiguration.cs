@@ -1,0 +1,45 @@
+using Source.TiltBoard.Ball;
+using UnityEngine;
+
+namespace Source.TiltBoard.Util.Config
+{
+    public class GameConfiguration : ScriptableObject
+    {
+        [Header("Ball count for each team")]
+        [SerializeField]
+        private int ballCountPerPlayer = 5;
+
+        [Header("Countdown in seconds after which the game starts")]
+        [SerializeField]
+        private int countdownBeforeGameStart = 3;
+
+        [Header("The color of the ball of the local player")]
+        [SerializeField]
+        private EBallColor localPlayerBallColor = EBallColor.None;
+
+        [Header("The color of the ball of the remote player")]
+        [SerializeField]
+        private EBallColor remotePlayerBallColor = EBallColor.None;
+
+
+        /// <summary>
+        /// Ball count for each team
+        /// </summary>
+        public int BallCountPerPlayer => ballCountPerPlayer;
+
+        /// <summary>
+        /// Countdown in seconds after which the game starts
+        /// </summary>
+        public int CountdownBeforeGameStart => countdownBeforeGameStart;
+        
+        /// <summary>
+        /// The color of the ball of the local player"
+        /// </summary>
+        public EBallColor LocalPlayerBallColor => localPlayerBallColor;
+
+        /// <summary>
+        /// The color of the ball of the remote player"
+        /// </summary>
+        public EBallColor RemotePlayerBallColor => remotePlayerBallColor;
+    }
+}

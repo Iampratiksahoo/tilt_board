@@ -27,7 +27,7 @@ namespace Source.TiltBoard.Pool
             GameObject.DontDestroyOnLoad( _poolParentObject );
 
             // load the config file 
-            _poolConfiguration = TBUtility.LoadConfiguration<PoolConfiguration>("PoolConfiguration");
+            _poolConfiguration = TBConfigUtility.LoadConfiguration<PoolConfiguration>("PoolConfiguration");
 
             // now loop through all the objects and add them to the pool 
             foreach (PoolEntryVO entry in _poolConfiguration.PoolEntries)

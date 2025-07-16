@@ -31,11 +31,6 @@ namespace Source.TiltBoard.UI.MainMenu
 
         private void onStartGame()
         {
-            // fire the game start signal 
-            _signalController.Fire(
-                new GameStartSignal()
-            );
-
             // then load the game scene 
             SceneManager.LoadScene("game");
         }

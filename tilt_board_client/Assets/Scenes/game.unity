@@ -288,6 +288,9 @@ MonoBehaviour:
   boardPrefab: {fileID: 4726196373259492993, guid: 08d698acde17949a1b1024d78d947685, type: 3}
   boardSpawnEaseType: 24
   boardSpawnAnimTime: 1
+  ballSpawnAnimTime: 0.05
+  ballSpawnEaseType: 14
+  timeTillEnemyBallSpawn: 0.5
 --- !u!4 &359001494
 Transform:
   m_ObjectHideFlags: 0
@@ -872,7 +875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 3
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66af442bdc36b4896a5ed62be5189eda, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 10dbe9c3893ad4e279b3d6ed20197837, type: 2}
@@ -899,7 +902,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 247.9
+  m_fontSize: 46.58
   m_fontSizeBase: 46.58
   m_fontWeight: 400
   m_enableAutoSizing: 1

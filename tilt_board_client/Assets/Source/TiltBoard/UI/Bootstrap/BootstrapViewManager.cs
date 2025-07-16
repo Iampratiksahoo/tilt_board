@@ -2,7 +2,7 @@ using Source.TiltBoard.Bootstrap;
 using TMPro;
 using UnityEngine;
 
-namespace Source.TiltBoard.UI
+namespace Source.TiltBoard.UI.Bootstrap
 {
     public class BootstrapViewManager : MonoBehaviour
     {

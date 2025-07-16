@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: PoolConfiguration
   m_EditorClassIdentifier: 
   poolEntries:
-  - poolObject: {fileID: 8815684089999591496, guid: 8a6fec3e541074fb7abf062a02fcea08, type: 3}
+  - poolKey: LoadingDice
+    poolObject: {fileID: 8815684089999591496, guid: 8a6fec3e541074fb7abf062a02fcea08, type: 3}
     prePoolAmount: 1
+  - poolKey: Board
+    poolObject: {fileID: 6841475149773680300, guid: 08d698acde17949a1b1024d78d947685, type: 3}
+    prePoolAmount: 1
+  - poolKey: Ball
+    poolObject: {fileID: 8788064416568002690, guid: 14e5a2078fafe447a9bf595dad819899, type: 3}
+    prePoolAmount: 10
