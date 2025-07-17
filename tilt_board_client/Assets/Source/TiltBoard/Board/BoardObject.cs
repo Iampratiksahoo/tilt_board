@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using Source.TiltBoard.Global;
-using Source.TiltBoard.Global.Signal;
-using Source.TiltBoard.Signal;
+using Source.TiltBoard.Ball;
 using UnityEngine;
 
 namespace Source.TiltBoard.Board
@@ -19,11 +16,21 @@ namespace Source.TiltBoard.Board
 
         [Space]
 
-        [Header("Corners")]
+        [Header("Spawn Groups")]
         [SerializeField] private SpawnPointGroupObject playerSpawnPointGroup = null;
         [SerializeField] private SpawnPointGroupObject opponentSpawnPointGroup = null;
 
-        private Quaternion _targetRotation;
+        [Space]
+
+        [SerializeField] private BallDetectorObject ballDetectorObject = null; 
+
+        private Quaternion _targetRotation = Quaternion.identity;
+        private bool _canTilt = false;
+
+        /// <summary>
+        /// Reference to the ball detector that let's us know once a ball is collected
+        /// </summary>
+        public BallDetectorObject BallDetector => ballDetectorObject; 
 
         /// <summary>
         /// The spawn points for the player's balls 
@@ -37,16 +44,23 @@ namespace Source.TiltBoard.Board
 
         void Start()
         {
+            // set this to initial rotation of the board 
             _targetRotation = transform.rotation;
+
+            // set this to false, as we need to enable it once everything is set.
+            _canTilt = false;
         }
 
         void Update()
         {
-            transform.rotation = Quaternion.Lerp(
-                transform.rotation,
-                _targetRotation,
-                Time.deltaTime * tiltLerpSpeed
-            );
+            if (_canTilt)
+            {
+                transform.rotation = Quaternion.Lerp(
+                    transform.rotation,
+                    _targetRotation,
+                    Time.deltaTime * tiltLerpSpeed
+                );   
+            }
         }
 
         /// <summary>
@@ -77,6 +91,11 @@ namespace Source.TiltBoard.Board
 
             // Build the target rotation (pitch around X, roll around Z):
             _targetRotation = Quaternion.Euler(pitch, 0f, roll);
+        }
+
+        public void SetTiltEnabled(bool canTilt)
+        {
+            _canTilt = canTilt;
         }
     }
 }

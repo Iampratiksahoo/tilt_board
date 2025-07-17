@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Source.TiltBoard.UI.Game
 {
-    public class GameCountdownView : MonoBehaviour
+    public class GameStartCountdownView : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text countdownText = null;

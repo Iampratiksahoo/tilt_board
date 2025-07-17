@@ -7,26 +7,6 @@ using UnityEngine;
 public class TestBoardInput : MonoBehaviour
 {
     private BoardObject _boardController;
-    private SignalController _signalController = null;
-    private bool _canTakeInput = false;
-
-    void Awake()
-    {
-        _canTakeInput = false;
-        _signalController = GameManager.Instance.GetController<SignalController>();
-        _signalController.Subscribe<GameStateChangedSignal>(onGameStateChanged);
-    }
-
-    void OnDestroy()
-    {
-        _signalController.Unsubscribe<GameStateChangedSignal>(onGameStateChanged);
-    }
-
-    private void onGameStateChanged(GameStateChangedSignal signal)
-    {
-        _canTakeInput = signal.CurrentState == EGameState.Playing;
-    }
-
     void Update()
     {
         if (_boardController == null)
@@ -34,8 +14,7 @@ public class TestBoardInput : MonoBehaviour
             _boardController = FindAnyObjectByType<BoardObject>();
         }
         
-        if (_boardController != null
-                && _canTakeInput)
+        if (_boardController != null)
         {
             // Player 1 input (WASD)
             Vector2 p1 = Vector2.zero;

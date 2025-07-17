@@ -13,6 +13,10 @@ namespace Source.TiltBoard.Util.Config
         [SerializeField]
         private int countdownBeforeGameStart = 3;
 
+        [Header("Duration of a single match in seconds")]
+        [SerializeField]
+        private int matchDurationInSeconds = 300;
+
         [Header("The color of the ball of the local player")]
         [SerializeField]
         private EBallColor localPlayerBallColor = EBallColor.None;
@@ -31,6 +35,11 @@ namespace Source.TiltBoard.Util.Config
         /// Countdown in seconds after which the game starts
         /// </summary>
         public int CountdownBeforeGameStart => countdownBeforeGameStart;
+
+        /// <summary>
+        /// Duration of a single match in seconds
+        /// </summary>
+        public int MatchDurationInSeconds => matchDurationInSeconds;        
         
         /// <summary>
         /// The color of the ball of the local player"

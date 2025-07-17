@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballCountPerPlayer: 5
   countdownBeforeGameStart: 3
-  localPlayerBallColor: 2
+  matchDurationInSeconds: 90
+  localPlayerBallColor: 3
   remotePlayerBallColor: 1

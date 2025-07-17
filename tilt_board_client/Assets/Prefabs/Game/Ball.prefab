@@ -54,6 +54,7 @@ MonoBehaviour:
     ballObject: {fileID: 1020495128851183594}
   - ballColor: 3
     ballObject: {fileID: 7438459858332971295}
+  despawnVfx: {fileID: 0}
 --- !u!1001 &209680407916825275
 PrefabInstance:
   m_ObjectHideFlags: 0
