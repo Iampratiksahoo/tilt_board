@@ -48,7 +48,7 @@ namespace Source.TiltBoard.Global
 
             // set the game state to initial load 
             // keep in mind, we set the private variable here, else the property would throw error.
-            _gamestate = EGameState.InitialLoad;
+            _gamestate = EGameState.Boot;
         }
 
         private void Start()

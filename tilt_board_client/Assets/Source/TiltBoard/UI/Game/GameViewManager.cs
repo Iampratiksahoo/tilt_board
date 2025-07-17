@@ -49,14 +49,13 @@ namespace Source.TiltBoard.UI.Game
             {
                 countdownView.StartCountdownFrom(_gameConfig.CountdownBeforeGameStart, () =>
                 {
-                    _signalController.Fire(
-                        new GameStartSignal()
-                    );
+                    // change the game state to playing 
+                    GameManager.Instance.GameState = EGameState.Playing; 
 
                     // Todo: Move this to game manager or something else 
                     foreach (BallObject ball in _balls)
                     {
-                        ball.SetRollingActive(true); 
+                        ball.SetRollingActive(true);
                     }
                 });
             });

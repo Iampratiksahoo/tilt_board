@@ -14,17 +14,17 @@ public class TestBoardInput : MonoBehaviour
     {
         _canTakeInput = false;
         _signalController = GameManager.Instance.GetController<SignalController>();
-        _signalController.Subscribe<GameStartSignal>(onGameStart);
+        _signalController.Subscribe<GameStateChangedSignal>(onGameStateChanged);
     }
 
     void OnDestroy()
     {
-        _signalController.Unsubscribe<GameStartSignal>(onGameStart);
+        _signalController.Unsubscribe<GameStateChangedSignal>(onGameStateChanged);
     }
 
-    private void onGameStart(GameStartSignal signal)
+    private void onGameStateChanged(GameStateChangedSignal signal)
     {
-        _canTakeInput = true;
+        _canTakeInput = signal.CurrentState == EGameState.Playing;
     }
 
     void Update()

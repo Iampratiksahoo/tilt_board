@@ -31,8 +31,6 @@ namespace Source.TiltBoard.Signal
             _typeToDelegatesMap?.Clear();
         }
 
-        public void OnGameStart() {}
-
         /// <summary>
         /// Used to Fire an signal
         /// </summary>

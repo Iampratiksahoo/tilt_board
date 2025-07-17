@@ -3,9 +3,15 @@ namespace Source.TiltBoard.Global
     public enum EGameState
     {
         None = 0,
-        InitialLoad,
+
+        // Boot Scene States
+        Boot,
+
+        // MainMenu States
         MainMenu,
-        GameStart,
+
+        // Game States
+        Playing,
         GameOver, 
     }
 }

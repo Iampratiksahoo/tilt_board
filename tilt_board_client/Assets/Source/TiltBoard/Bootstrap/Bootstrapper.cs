@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Source.TiltBoard.Bootstrap.Signal;
-using Source.TiltBoard.Global;
 using Source.TiltBoard.Pool;
 using Source.TiltBoard.Scene;
 using Source.TiltBoard.Signal;

@@ -9,7 +9,7 @@ namespace Source.TiltBoard.Pool
 {
     public class PoolController : IController
     {
-        // map to save all the WhiteFrostBehaviour
+        // map to save all the pooled objects
         private Dictionary<string, Queue<GameObject>> _poolMap = null;
 
         private PoolConfiguration _poolConfiguration = null;
