@@ -19,11 +19,11 @@ namespace Source.TiltBoard.Util.Config
 
         [Header("The color of the ball of the local player")]
         [SerializeField]
-        private EBallColor localPlayerBallColor = EBallColor.None;
+        private EBallType localPlayerBallColor = EBallType.None;
 
         [Header("The color of the ball of the remote player")]
         [SerializeField]
-        private EBallColor remotePlayerBallColor = EBallColor.None;
+        private EBallType remotePlayerBallColor = EBallType.None;
 
 
         /// <summary>
@@ -44,11 +44,11 @@ namespace Source.TiltBoard.Util.Config
         /// <summary>
         /// The color of the ball of the local player"
         /// </summary>
-        public EBallColor LocalPlayerBallColor => localPlayerBallColor;
+        public EBallType LocalPlayerBallColor => localPlayerBallColor;
 
         /// <summary>
         /// The color of the ball of the remote player"
         /// </summary>
-        public EBallColor RemotePlayerBallColor => remotePlayerBallColor;
+        public EBallType RemotePlayerBallColor => remotePlayerBallColor;
     }
 }

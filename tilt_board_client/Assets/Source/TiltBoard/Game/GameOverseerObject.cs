@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Source.TiltBoard.Ball;
+using Source.TiltBoard.Ball.Util;
 using Source.TiltBoard.Board;
 using Source.TiltBoard.Game.Signal;
 using Source.TiltBoard.Global;
@@ -25,6 +26,7 @@ namespace Source.TiltBoard.Game
         [SerializeField] private float timeTillEnemyBallSpawn = .5f;
 
         private GameConfiguration _gameConfig = null;
+        private BallConfiguration _ballConfig = null;
         private PoolController _poolController = null;
         private SignalController _signalController = null;
 
@@ -34,6 +36,7 @@ namespace Source.TiltBoard.Game
         void Awake()
         {
             _gameConfig = TBConfigUtility.LoadConfiguration<GameConfiguration>("GameConfiguration");
+            _ballConfig = TBConfigUtility.LoadConfiguration<BallConfiguration>("BallConfiguration");
             _signalController = GameManager.Instance.GetController<SignalController>();
             _poolController = GameManager.Instance.GetController<PoolController>();
         }
@@ -160,10 +163,10 @@ namespace Source.TiltBoard.Game
             onComplete?.Invoke();
         }
 
-        private BallObject spawnBall(EBallColor ballColor, Transform spawnPoint, Transform ballParent)
+        private BallObject spawnBall(EBallType ballType, Transform spawnPoint, Transform ballParent)
         {
             BallObject ball = _poolController.GetFromPool("Ball").GetComponent<BallObject>();
-            ball.Initialize(ballColor);
+            ball.Initialize(_ballConfig, ballType);
             ball.transform.position = spawnPoint.position;
             ball.transform.parent = ballParent.transform;
             ball.gameObject.transform.localScale = Vector3.zero;

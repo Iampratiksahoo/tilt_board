@@ -70,7 +70,7 @@ namespace Source.TiltBoard.UI.Game
         private void startHeartbeatAnimation()
         {
             Vector3 originalScale = timerText.gameObject.transform.localScale;
-            timerText.color = lastSecondTextColor;
+            timerText.color = lastSecondTextColor   ;
 
             LeanTween.scale(
                 timerText.gameObject, 

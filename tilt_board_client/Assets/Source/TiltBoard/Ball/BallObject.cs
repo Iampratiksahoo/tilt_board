@@ -1,62 +1,53 @@
-using System.Collections.Generic;
 using System.Linq;
+using Source.TiltBoard.Ball.Util;
 using UnityEngine;
 
 namespace Source.TiltBoard.Ball
 {
     public class BallObject : MonoBehaviour
     {
-        [SerializeField] private List<BallColorToObjectVO> ballToObjectMap = null;
+        [SerializeField] private MeshRenderer ballMesh = null;
 
         private Rigidbody _rigidbody = null;
 
         /// <summary>
         /// Color this ball Object is associated with 
         /// </summary>
-        public EBallColor Color { get; private set; }
+        public EBallType Type { get; private set; }
 
         void Awake()
         {
-            // disable all the colors as soon as we wake up 
-            foreach (BallColorToObjectVO entry in ballToObjectMap)
-            {
-                // set the object to inactive
-                entry.BallObject.SetActive(false);
+            // cache the rigidbody
+            _rigidbody = GetComponentInChildren<Rigidbody>();
 
-                // so that the object doesn't start rolling as soon as spawned
-                entry.BallObject.GetComponent<Rigidbody>().isKinematic = true;
-            }
+            // set the kinematic to true in the beginning 
+            _rigidbody.isKinematic = true;
         }
 
         /// <summary>
         /// This is the initalizer, that initializes the ball, before it can be used.
         /// </summary>
-        /// <param name="ballColor"></param>
-        public bool Initialize(EBallColor ballColor)
+        /// <param name="ballType"></param>
+        public void Initialize(BallConfiguration config, EBallType ballType)
         {
-            // falg to be returned
-            bool isInitSuccess = false;
+            // set the type 
+            Type = ballType;
 
-            // set the color 
-            Color = ballColor;
+            // look for the ball material by type  
+            BallTypeToMaterialVO entryVO = config.BallToMaterialMap.FirstOrDefault(mat => mat.Type == ballType);
 
-            // now enable that particlar gameObject in the child 
-            BallColorToObjectVO entryVO = ballToObjectMap.FirstOrDefault(entry => entry.BallColor == Color);
-
+            // check if we got a valid one
             if (entryVO != null
-                && entryVO.BallObject != null)
+                && entryVO.Material != null)
             {
-                // set the object to active 
-                entryVO.BallObject.SetActive(true);
-
-                // cache the rigidbody
-                _rigidbody = entryVO.BallObject.GetComponent<Rigidbody>();
-
-                // set flag to success 
-                isInitSuccess = true;
+                // if yes, then set it and move on 
+                ballMesh.material = entryVO.Material;
             }
-
-            return isInitSuccess;
+            else
+            {
+                // else throw error 
+                Debug.LogError($"Ball Material for type {ballType} is not set in the BallConfiguration");
+            }
         }
 
         public void SetRollingActive(bool isRollingActive)

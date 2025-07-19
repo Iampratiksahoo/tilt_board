@@ -1,4 +1,5 @@
 using System.IO;
+using Source.TiltBoard.Ball.Util;
 using Source.TiltBoard.Pool.Util;
 using Source.TiltBoard.Util.Config;
 using UnityEditor;
@@ -16,10 +17,16 @@ namespace Source.Editor.Util
             createConfiguration<PoolConfiguration>("PoolConfiguration.asset");
         }
 
-        [MenuItem("TiltBoard/Create Config/GameConfiguration", false, 0)]
+        [MenuItem("TiltBoard/Create Config/GameConfiguration", false, 1)]
         public static void CreateGameConfiguration()
         {
             createConfiguration<GameConfiguration>("GameConfiguration.asset");
+        }
+
+        [MenuItem("TiltBoard/Create Config/BallConfiguration", false, 2)]
+        public static void CreateBallConfiguration()
+        {
+            createConfiguration<BallConfiguration>("BallConfiguration.asset");
         }
 
         /// <summary>

@@ -15,5 +15,5 @@ MonoBehaviour:
   ballCountPerPlayer: 5
   countdownBeforeGameStart: 3
   matchDurationInSeconds: 90
-  localPlayerBallColor: 3
-  remotePlayerBallColor: 1
+  localPlayerBallColor: 2
+  remotePlayerBallColor: 4
