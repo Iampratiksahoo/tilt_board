@@ -1,5 +1,7 @@
 using System.Linq;
 using Source.TiltBoard.Ball.Util;
+using Source.TiltBoard.Player.Enum;
+using Source.TiltBoard.Util;
 using UnityEngine;
 
 namespace Source.TiltBoard.Ball
@@ -8,6 +10,7 @@ namespace Source.TiltBoard.Ball
     {
         [SerializeField] private MeshRenderer ballMesh = null;
 
+        private BallConfiguration _config = null;
         private Rigidbody _rigidbody = null;
 
         /// <summary>
@@ -15,8 +18,16 @@ namespace Source.TiltBoard.Ball
         /// </summary>
         public EBallType Type { get; private set; }
 
+        /// <summary>
+        /// Owener type for this ball, Local or Remote 
+        /// </summary>
+        public EPlayerType OwnerType { get; private set; }
+
         void Awake()
         {
+            // cache the reference to the Config
+            _config = TBConfigUtility.LoadConfiguration<BallConfiguration>("BallConfiguration");
+
             // cache the rigidbody
             _rigidbody = GetComponentInChildren<Rigidbody>();
 
@@ -28,13 +39,16 @@ namespace Source.TiltBoard.Ball
         /// This is the initalizer, that initializes the ball, before it can be used.
         /// </summary>
         /// <param name="ballType"></param>
-        public void Initialize(BallConfiguration config, EBallType ballType)
+        public void Initialize(EPlayerType ownerType, EBallType ballType)
         {
+            // set the owner type
+            OwnerType = ownerType; 
+
             // set the type 
             Type = ballType;
 
             // look for the ball material by type  
-            BallTypeToMaterialVO entryVO = config.BallToMaterialMap.FirstOrDefault(mat => mat.Type == ballType);
+            BallTypeToMaterialVO entryVO = _config.BallToMaterialMap.FirstOrDefault(mat => mat.Type == ballType);
 
             // check if we got a valid one
             if (entryVO != null

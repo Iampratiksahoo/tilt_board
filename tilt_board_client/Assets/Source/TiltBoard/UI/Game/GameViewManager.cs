@@ -32,6 +32,12 @@ namespace Source.TiltBoard.UI.Game
 
             _signalController.Subscribe<StartGameCountdownSignal>(onStartGameCountdown);
             _signalController.Subscribe<StartGameTimerSignal>(onStartGameTimer);
+            _signalController.Subscribe<GameOverSignal>(onGameOver);
+        }
+
+        private void onGameOver(GameOverSignal signal)
+        {
+            timerView.SafeStopTimer();
         }
 
         private void onStartGameCountdown(StartGameCountdownSignal signal)

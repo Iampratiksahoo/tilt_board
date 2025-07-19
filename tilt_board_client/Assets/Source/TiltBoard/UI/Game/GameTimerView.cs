@@ -24,12 +24,21 @@ namespace Source.TiltBoard.UI.Game
 
         public void StartTimer(int seconds, Action onTimeUp)
         {
+            // first safe stop, if at all required
+            SafeStopTimer();
+
+            // then start the timer 
+            _timerCoroutine = StartCoroutine(timerCoroutine(seconds, onTimeUp));
+        }
+
+        public void SafeStopTimer()
+        {
+            // if the timer is running
             if (_timerCoroutine != null)
-            {
+            {   
+                // then stop the timer
                 StopCoroutine(_timerCoroutine);
             }
-
-            _timerCoroutine = StartCoroutine(timerCoroutine(seconds, onTimeUp));
         }
 
         private IEnumerator timerCoroutine(int seconds, Action onTimeUp)
@@ -47,7 +56,7 @@ namespace Source.TiltBoard.UI.Game
                 // if the time is less than 10s, then do a animation
                 if (seconds <= 10)
                 {
-                    startHeartbeatAnimation();    
+                    startHeartbeatAnimation();
                 }
 
                 // then wait for 1 second
@@ -61,7 +70,7 @@ namespace Source.TiltBoard.UI.Game
             timerText.color = _originalTextColor;
 
             // show the text as time up 
-            timerText.text = _timeUpText; 
+            timerText.text = _timeUpText;
 
             // once done, invoke time up 
             onTimeUp?.Invoke();
