@@ -1,5 +1,6 @@
 using Source.TiltBoard.Game.Signal;
 using Source.TiltBoard.Global;
+using Source.TiltBoard.Player.Enum;
 using Source.TiltBoard.Signal;
 using TMPro;
 using UnityEngine;

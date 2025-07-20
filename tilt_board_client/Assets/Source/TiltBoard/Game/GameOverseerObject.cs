@@ -100,17 +100,20 @@ namespace Source.TiltBoard.Game
         {
             // the winner player type
             EPlayerType winnerPlayerType = EPlayerType.None;
+            int score = 0;
 
             // check if any local player has reached the max ball per player score
             if (_playerToBallMap[EPlayerType.Local] >= _gameConfig.BallCountPerPlayer)
             {
                 winnerPlayerType = EPlayerType.Local;
+                score = _playerToBallMap[EPlayerType.Local];
             }
 
             // check if any remote player has reached the max ball per player score
             if (_playerToBallMap[EPlayerType.Remote] >= _gameConfig.BallCountPerPlayer)
             {
                 winnerPlayerType = EPlayerType.Remote;
+                score = _playerToBallMap[EPlayerType.Remote];
             }
 
             // this means we have a winner
@@ -119,7 +122,8 @@ namespace Source.TiltBoard.Game
                 // fire the game over signal 
                 _signalController.Fire(
                     new GameOverSignal(
-                        winnerPlayerType
+                        winnerPlayerType, 
+                        score
                     )
                 );
 
