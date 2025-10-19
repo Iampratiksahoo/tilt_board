@@ -1,5 +1,6 @@
 using System.IO;
 using Source.TiltBoard.Ball.Util;
+using Source.TiltBoard.Network;
 using Source.TiltBoard.Pool.Util;
 using Source.TiltBoard.Util.Config;
 using UnityEditor;
@@ -27,6 +28,12 @@ namespace Source.Editor.Util
         public static void CreateBallConfiguration()
         {
             createConfiguration<BallConfiguration>("BallConfiguration.asset");
+        }
+
+        [MenuItem("TiltBoard/Create Config/NetworkConfiguration", false, 3)]
+        public static void CreateNetworkConfiguration()
+        {
+            createConfiguration<NetworkConfiguration>("NetworkConfiguration.asset");
         }
 
         /// <summary>
